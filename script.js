@@ -2,7 +2,6 @@ const container = document.querySelector('.grid-wrap');
 const DEFAULT_SIZE = 16;
 const DEFAULT_MODE = "COLOR";
 const DEFAULT_COLOR = '#333'
-let currSize = DEFAULT_SIZE;
 
 // create board on load
 window.onload = ()=> {
@@ -17,9 +16,13 @@ function createBoard(size) {
         grid_box.classList.add('box');
         grid_box.addEventListener('mouseover', changeColor);
         grid_box.addEventListener('mousedown', changeColor);
+        grid_box.addEventListener('mouseout', changeColor);
         container.appendChild(grid_box);
     }
 }
+
+
+let currSize = DEFAULT_SIZE;
 
 // updates "# x #" for UI
 const slider = document.getElementById('slider');
@@ -27,14 +30,16 @@ const sliderRange = document.getElementById('range');
 sliderRange.innerHTML = `${slider.value} x ${slider.value}`;
 slider.oninput = function() {
     sliderRange.innerHTML = `${this.value} x ${this.value}`;
-    currSize = this.value;
 }
 
 // updates grid size
 const submit = document.getElementById('grid-change');
 submit.onclick = () => {
-    clearBoard();
-    createBoard(currSize);
+    if (currSize != slider.value) {
+        currSize = slider.value;
+        clearBoard();
+        createBoard(currSize);
+    }
 }
 
 // clear board
@@ -42,6 +47,7 @@ function clearBoard() {
     container.innerHTML = "";
 }
 
+// track mouse btn down and up
 let mouseDn = 0;
 document.body.onmousedown = () => mouseDn = 1;
 document.body.onmouseup = () => mouseDn = 0;
@@ -49,8 +55,18 @@ document.body.onmouseup = () => mouseDn = 0;
 let currColor = DEFAULT_COLOR;
 let currMode = DEFAULT_MODE;
 function changeColor(e) {
-    if (e.type === 'mouseover' && !mouseDn) return;
-    if (e.target.style.backgroundColor == currColor) return;
+    // gives hover effect
+    if (e.type === 'mouseover' && !mouseDn) {
+        e.target.style.boxShadow = '1px 2px 4px grey'; 
+        e.target.style.transition = '0.05s';
+        return;
+    } else if (e.type === 'mouseout') {
+        e.target.style.boxShadow = 'none';
+        e.target.style.transition = '0.3s';
+        return;
+    }
+
+    // updates color mode
     if (currMode === 'COLOR') {
         e.target.style.backgroundColor = currColor;
     }
