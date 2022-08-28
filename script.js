@@ -2,13 +2,15 @@ const container = document.querySelector('.grid-wrap');
 const DEFAULT_SIZE = 16;
 const DEFAULT_MODE = "COLOR";
 const DEFAULT_COLOR = '#333'
+const clrSelect = document.getElementById('color-selector');
+let activeMode = DEFAULT_MODE;
 
 // create board on load
 window.onload = ()=> {
-    createBoard(DEFAULT_SIZE);
+    createBoard(DEFAULT_SIZE, DEFAULT_MODE);
 }
 
-function createBoard(size) {
+function createBoard(size, mode) {
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     for (let i = 0; i < size*size; ++i) {
@@ -38,7 +40,7 @@ submit.onclick = () => {
     if (currSize != slider.value) {
         currSize = slider.value;
         clearBoard();
-        createBoard(currSize);
+        createBoard(currSize, activeMode);
     }
 }
 
@@ -52,12 +54,31 @@ let mouseDn = 0;
 document.body.onmousedown = () => mouseDn = 1;
 document.body.onmouseup = () => mouseDn = 0;
 
-let currColor = DEFAULT_COLOR;
+// track settings
+const normalMd = document.getElementById('normal');
+const rainbowMd = document.getElementById('rainbow');
+const eraseMd = document.getElementById('erase');
+const clearBd = document.getElementById('clear');
+
+normalMd.addEventListener('click', ()=> {
+    activeMode = "COLOR";
+});
+rainbowMd.addEventListener('click', ()=> {
+    activeMode = "RAINBOW";
+});
+eraseMd.addEventListener('click', ()=> {
+    activeMode = 'ERASE';
+});
+clearBd.addEventListener('click', ()=> {
+    clearBoard();
+    createBoard(currSize, activeMode);
+})
+
 let currMode = DEFAULT_MODE;
 function changeColor(e) {
     // gives hover effect
     if (e.type === 'mouseover' && !mouseDn) {
-        e.target.style.boxShadow = '1px 2px 4px grey'; 
+        e.target.style.boxShadow = '1px 2px 4px black'; 
         e.target.style.transition = '0.05s';
         return;
     } else if (e.type === 'mouseout') {
@@ -67,13 +88,13 @@ function changeColor(e) {
     }
 
     // updates color mode
-    if (currMode === 'COLOR') {
-        e.target.style.backgroundColor = currColor;
+    if (activeMode === 'COLOR') {
+        e.target.style.backgroundColor = clrSelect.value;
     }
-    else if (currMode === 'ERASER') {
+    else if (activeMode === 'ERASE') {
         e.target.style.backgroundColor = '#FFF';
     }
-    else if (currMode === 'RAINBOW') {
+    else if (activeMode === 'RAINBOW') {
         const randR = Math.floor(Math.random() * 256);
         const randG = Math.floor(Math.random() * 256);
         const randB = Math.floor(Math.random() * 256);
