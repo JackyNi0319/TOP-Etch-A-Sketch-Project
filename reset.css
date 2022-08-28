@@ -46,3 +46,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button, input[type="submit"], input[type="reset"] {
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}

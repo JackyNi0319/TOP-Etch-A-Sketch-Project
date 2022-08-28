@@ -2,7 +2,7 @@ const container = document.querySelector('.grid-wrap');
 const DEFAULT_SIZE = 16;
 const DEFAULT_MODE = "COLOR";
 const DEFAULT_COLOR = '#333'
-const clrSelect = document.getElementById('color-selector');
+const clrSelect = document.getElementById('color-picker');
 let activeMode = DEFAULT_MODE;
 
 // create board on load
@@ -62,16 +62,32 @@ const clearBd = document.getElementById('clear');
 
 normalMd.addEventListener('click', ()=> {
     activeMode = "COLOR";
+    trackMode();
+    normalMd.style.backgroundColor = 'black';
+    normalMd.style.color = 'white';
 });
 rainbowMd.addEventListener('click', ()=> {
     activeMode = "RAINBOW";
+    trackMode();
+    rainbowMd.style.backgroundColor = 'black';
+    rainbowMd.style.color = 'white';
 });
 eraseMd.addEventListener('click', ()=> {
     activeMode = 'ERASE';
+    trackMode();
+    eraseMd.style.backgroundColor = 'black';
+    eraseMd.style.color = 'white';
 });
+
 clearBd.addEventListener('click', ()=> {
     clearBoard();
     createBoard(currSize, activeMode);
+})
+clearBd.addEventListener('mouseover', ()=> {
+    clearBd.style.background = 'lightgrey';
+})
+clearBd.addEventListener('mouseout', ()=> {
+    clearBd.style.background = 'white';
 })
 
 let currMode = DEFAULT_MODE;
@@ -100,4 +116,15 @@ function changeColor(e) {
         const randB = Math.floor(Math.random() * 256);
         e.target.style.backgroundColor = `rgb(${randR}, ${randG}, ${randB})`;
     }
+}
+
+function trackMode() {
+    normalMd.style.backgroundColor = 'white';
+    normalMd.style.color = 'black';
+
+    rainbowMd.style.backgroundColor = 'white';
+    rainbowMd.style.color = 'black';
+
+    eraseMd.style.backgroundColor = 'white';
+    eraseMd.style.color = 'black';
 }

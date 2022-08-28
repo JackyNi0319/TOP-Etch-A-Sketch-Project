@@ -1,12 +1,149 @@
+body {
+    background-color: rgb(223, 240, 255);
+}
+
+.title {
+    font-size: 8vmin;
+    text-align: center;
+    padding-bottom: 2vmin;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#color-picker {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    width: 10vmin;
+    height: 10vmin;
+}
+
+#color-picker::-webkit-color-swatch {
+    border-radius: 50%;
+    box-shadow: 0 2px 3px rgb(187, 187, 188);
+    border: none;
+    transition: 0.3s;
+}
+
+#color-picker::-webkit-color-swatch:hover,
+#color-picker::-webkit-color-swatch:focus {
+    border-radius: 10%;
+}
+
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2vmin;
+    margin-bottom: 0;
+}
+
+.flex-rItems {
+    margin: 1vmin;
+}
+
+button, .title, #grid-change, #range {
+    font-family: 'Silkscreen', cursive;
+}
+
+#range {
+    font-size: 3vmin;
+    width: 20vmin;
+    padding-right: 0;
+    text-align: center;
+}
+
+#slider {
+    padding-left: 0;
+    background-color: rgb(120, 225, 235);
+    border-radius: 3vmin;
+    height: 2vmin;
+    max-width: 25vmin;
+    appearance: none;
+}
+
+#slider::-webkit-slider-thumb {
+    width: 3vmin;
+    height: 3vmin;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
+    appearance: none;
+}
+
+#grid-change {
+    border: 0.5vmin solid black;
+    padding: 1vmin;
+    background-color: wheat;
+    font-size: 3vmin;
+    transition: 0.3s;
+}
+
+#grid-change:hover {
+    background-color: rgb(241, 205, 139);
+    transition: 0.3s;
+}
+
+button {
+    border: 0.5vmin solid black;
+    background-color: rgb(255, 255, 255);
+    font-size: 3vmin;
+    padding: 1.5vmin;
+    margin: 1vmin;
+    margin-top: 0;
+    transition: 0.3s;
+}
+
 /* sketchboard */
 .grid-wrap {
     display: grid;
-    width: 500px;
-    height: 500px;
+    width: 65vmin;
+    height: 65vmin;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 2px 4px 7px;
 }
 
 .box {
     user-select: none;
+}
+
+/* footer */
+footer {
+    display: block;
+    width: 100%;
+    background-color: rgb(43, 43, 43);
+    height: auto;
+
+    font-family: 'Silkscreen', cursive;
+    font-weight: 600;
+    font-size: 2.5vmin;
+    color: white;
+
+    padding: 1.5rem 0 1.5rem;
+    margin-top: 4vmin;
+}
+
+.footer-wrapper {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+
+footer a, footer a:visited {
+	color: white;
+	text-decoration: underline;
+}
+
+footer a:hover {
+	color: rgb(0, 149, 255);
+}
+
+footer p:hover {
+    color: rgb(95, 154, 225);
 }

@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+
     <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
 
     <title>🎨Etch-A-Sketch</title>
 </head>
@@ -18,11 +20,11 @@
     <main>
         <div class="grid-wrap"></div>
         <div class="settings">
-            <input id="color-selector" type="color" value="#333333">
-            <div>
-                <label><p id="range"></p></label>
-                <input id="slider" type="range" id="vol" name="vol" min="1" max="100" value="16">
-                <input id="grid-change" type="submit">
+            <div class="flex-row">
+                <input class="flex-rItems" id="color-picker" type="color" value="#333333">
+                <label class="flex-rItems"><p id="range"></p></label>
+                <input class="flex-rItems" id="slider" type="range" id="vol" name="vol" min="1" max="100" value="16">
+                <input class="flex-rItems" id="grid-change" type="submit">
             </div>
             <button id="normal">Normal</button>
             <button id="rainbow">Rainbow</button>
@@ -32,7 +34,8 @@
     </main>
 
     <footer>
-
+        <div class="footer-wrapper">
+            <p>Copyright © <a href="https://github.com/JackyNi0319" target="_blank">JackyNi0319</a> 2022</p>
     </footer>
 </body>
 </html>
