@@ -1,0 +1,12 @@
+/* sketchboard */
+.grid-wrap {
+    display: grid;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 2px 4px 7px;
+}
+
+.box {
+    user-select: none;
+}
